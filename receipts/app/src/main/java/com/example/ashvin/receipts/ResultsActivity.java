@@ -6,6 +6,8 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -13,6 +15,8 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.widget.ImageView;
 
+import java.io.File;
+import java.io.IOException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -33,15 +37,36 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+      
+        String filepath = getIntent().getStringExtra("Path");
 
-        Intent intent = getIntent();
-        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
 
         Bitmap testImage = getBitmapFromAsset(this, "test2.png");
 
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(testImage);
 
         recognizeText(image);
+      
+      
+        File file = new File(filepath);
+        if (file.exists()) {
+            System.out.println("File does exist");
+            ImageView imageView = findViewById(R.id.image_view);
+            imageView.setImageURI(Uri.fromFile(file));
+        }
+        else {
+            System.out.println("File does not exist");
+        }
+
+//        ExifInterface exif = new ExifInterface(filepath);
+//        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+
+//        Matrix matrix = new Matrix();
+//        matrix.postRotate(90);
+//        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+//        ImageView imageView = findViewById(R.id.image_view);
+
+//        imageView.setImageBitmap(rotatedBitmap);
 
 //        Matrix matrix = new Matrix();
 //        matrix.postRotate(90);
@@ -146,5 +171,4 @@ public class ResultsActivity extends AppCompatActivity {
 
         return bitmap;
     }
-
 }
