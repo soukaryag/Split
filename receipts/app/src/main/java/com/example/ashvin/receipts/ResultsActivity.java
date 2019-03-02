@@ -15,11 +15,11 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
         Intent intent = getIntent();
         Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
-        Matrix matrix = new Matrix();
-        matrix.postRotate(90);
-        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        //Matrix matrix = new Matrix();
+        //matrix.postRotate(90);
+        //Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         ImageView imageView = findViewById(R.id.image_view);
-        imageView.setImageBitmap(rotatedBitmap);
+        imageView.setImageBitmap(bitmap);
     }
 
 }
