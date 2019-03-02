@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+<<<<<<< HEAD
   <component name="AndroidLayouts">
     <shared>
       <config />
     </shared>
   </component>
+=======
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
   <component name="CMakeSettings">
     <configurations>
       <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
     </configurations>
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="d92efb9a-e0ba-4a9d-b5be-e6b07c991986" name="Default" comment="" />
+=======
+    <list default="true" id="fe7ae325-ab57-42f8-a7e2-13e4f2c02a63" name="Default" comment="" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,6 +26,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -2454,19 +2462,33 @@
     <option name="y" value="206" />
     <option name="width" value="785" />
     <option name="height" value="830" />
+=======
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="156" />
+    <option name="y" value="-24" />
+    <option name="width" value="1890" />
+    <option name="height" value="930" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="PackagesPane" />
       <pane id="Scope" />
+=======
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="receipts" type="b2602c69:ProjectViewProjectNode" />
+<<<<<<< HEAD
               <item name="receipts" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
             </path>
             <path>
@@ -2510,10 +2532,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
+=======
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
               <item name="receipts" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="receipts" type="b2602c69:ProjectViewProjectNode" />
+<<<<<<< HEAD
               <item name="receipts" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
@@ -2537,27 +2562,46 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="res" type="462c0819:PsiDirectoryNode" />
               <item name="values" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="receipts" type="462c0819:PsiDirectoryNode" />
+              <item name="receipts" type="462c0819:PsiDirectoryNode" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="PackagesPane" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
       <pane id="AndroidView">
         <subPane>
           <expand>
             <path>
               <item name="receipts" type="1abcf292:AndroidViewProjectNode" />
+<<<<<<< HEAD
               <item name="receipts" type="462c0819:PsiDirectoryNode" />
+=======
+              <item name="receipts" type="e9137016:NonAndroidModuleNode" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+<<<<<<< HEAD
+=======
+      <pane id="Scope" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+<<<<<<< HEAD
     <property name="device.picker.selection" value="9887bc463151525938" />
+=======
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
     <property name="last_opened_file_path" value="$PROJECT_DIR$/receipts" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
@@ -2583,12 +2627,17 @@
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
+<<<<<<< HEAD
       <option name="WORKING_DIRECTORY" value="file://$MODULE_DIR$" />
+=======
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
       <option name="PASS_PARENT_ENVS" value="true" />
       <option name="TEST_SEARCH_SCOPE">
         <value defaultName="singleModule" />
       </option>
       <patterns />
+<<<<<<< HEAD
       <method>
         <option name="Make" enabled="false" />
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
@@ -2642,6 +2691,8 @@
       </Profilers>
       <option name="DEEP_LINK" value="" />
       <option name="ACTIVITY_CLASS" value="" />
+=======
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -2678,19 +2729,34 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
+<<<<<<< HEAD
       <changelist id="d92efb9a-e0ba-4a9d-b5be-e6b07c991986" name="Default" comment="" />
       <created>1551544542861</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1551544542861</updated>
+=======
+      <changelist id="fe7ae325-ab57-42f8-a7e2-13e4f2c02a63" name="Default" comment="" />
+      <created>1551546490547</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1551546490547</updated>
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
     </task>
     <servers />
   </component>
   <component name="ToolWindowManager">
+<<<<<<< HEAD
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Android Profiler" />
+=======
+    <frame x="-7" y="-7" width="1295" height="695" extended-state="6" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Android Profiler" show_stripe_button="false" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
       <window_info anchor="right" id="Palette&#9;" />
       <window_info id="Image Layers" />
       <window_info id="Build Variants" side_tool="true" />
@@ -2703,18 +2769,29 @@
       <window_info id="Captures" order="2" weight="0.25" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
+<<<<<<< HEAD
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2295302" />
       <window_info anchor="bottom" id="Build" visible="true" weight="0.2863248" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="right" id="Gradle" visible="true" weight="0.15100671" />
+=======
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.254251" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Theme Preview" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" side_tool="true" />
       <window_info anchor="right" id="Device File Explorer" side_tool="true" />
+<<<<<<< HEAD
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+=======
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -2723,6 +2800,7 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+<<<<<<< HEAD
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
@@ -2767,4 +2845,6 @@
       </provider>
     </entry>
   </component>
+=======
+>>>>>>> c7f0d199ef6db1e59a7705bdbd03e164f605b1e9
 </project>

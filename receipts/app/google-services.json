@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "558536804050",
+    "firebase_url": "https://receipts-e6d17.firebaseio.com",
+    "project_id": "receipts-e6d17",
+    "storage_bucket": "receipts-e6d17.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:558536804050:android:d4f18b56b873f6d8",
+        "android_client_info": {
+          "package_name": "com.example.ashvin.receipts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "558536804050-alok4lhrthuumr32brqpvs5851sop98r.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ashvin.receipts",
+            "certificate_hash": "89f868a83f2129fcff84b0484e2a160447edc8c5"
+          }
+        },
+        {
+          "client_id": "558536804050-arrvv3l5g7l4kn4k5nkkvibej3o40hph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKae6i51QofdHmK5CL18Tf3vfGy6QQMhY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "558536804050-arrvv3l5g7l4kn4k5nkkvibej3o40hph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
