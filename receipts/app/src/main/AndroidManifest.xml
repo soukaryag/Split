@@ -23,12 +23,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".ResultsActivity"></activity>
-<<<<<<< HEAD
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />
-=======
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.example.android.fileprovider"
@@ -41,6 +40,6 @@
                 android:value="ocr" />
             </meta-data>
         </provider>
->>>>>>> 04e22a1920f45ea6a6670bbe1ab2c58a8d0957b7
+
     </application>
 </manifest>

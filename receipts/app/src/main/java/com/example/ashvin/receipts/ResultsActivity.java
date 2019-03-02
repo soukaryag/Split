@@ -1,22 +1,20 @@
 package com.example.ashvin.receipts;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
-<<<<<<< HEAD
-=======
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.graphics.Point;
 import android.graphics.Rect;
->>>>>>> 04e22a1920f45ea6a6670bbe1ab2c58a8d0957b7
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import android.widget.ImageView;
 
-<<<<<<< HEAD
-=======
 import java.io.File;
 import java.io.IOException;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,13 +31,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
->>>>>>> 04e22a1920f45ea6a6670bbe1ab2c58a8d0957b7
 public class ResultsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-<<<<<<< HEAD
         Intent intent = getIntent();
         Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
         //Matrix matrix = new Matrix();
@@ -47,7 +43,6 @@ public class ResultsActivity extends AppCompatActivity {
         //Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
         ImageView imageView = findViewById(R.id.image_view);
         imageView.setImageBitmap(bitmap);
-=======
       
         String filepath = getIntent().getStringExtra("Path");
 
@@ -62,8 +57,8 @@ public class ResultsActivity extends AppCompatActivity {
         File file = new File(filepath);
         if (file.exists()) {
             System.out.println("File does exist");
-            ImageView imageView = findViewById(R.id.image_view);
-            imageView.setImageURI(Uri.fromFile(file));
+            ImageView imageView2 = findViewById(R.id.image_view);
+            imageView2.setImageURI(Uri.fromFile(file));
         }
         else {
             System.out.println("File does not exist");
@@ -181,6 +176,5 @@ public class ResultsActivity extends AppCompatActivity {
         }
 
         return bitmap;
->>>>>>> 04e22a1920f45ea6a6670bbe1ab2c58a8d0957b7
     }
 }
