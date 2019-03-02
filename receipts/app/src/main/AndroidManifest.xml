@@ -4,6 +4,7 @@
     package="com.example.ashvin.receipts">
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 
     <application
@@ -22,10 +23,24 @@
             </intent-filter>
         </activity>
         <activity android:name=".ResultsActivity"></activity>
+<<<<<<< HEAD
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />
+=======
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.android.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+                android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+                android:value="ocr" />
+            </meta-data>
+        </provider>
+>>>>>>> 04e22a1920f45ea6a6670bbe1ab2c58a8d0957b7
     </application>
-
 </manifest>
