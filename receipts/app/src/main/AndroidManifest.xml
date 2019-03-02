@@ -18,12 +18,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <!--<activity android:name=".ResultsActivity">-->
-        <!--</activity>-->
+
+        <activity android:name=".ResultsActivity"></activity>
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="ocr" />
+        
     </application>
 
 </manifest>
