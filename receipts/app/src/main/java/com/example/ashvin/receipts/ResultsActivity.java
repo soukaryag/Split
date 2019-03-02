@@ -40,14 +40,7 @@ public class ResultsActivity extends AppCompatActivity {
       
         String filepath = getIntent().getStringExtra("Path");
 
-
-        Bitmap testImage = getBitmapFromAsset(this, "test2.png");
-
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(testImage);
-
-        recognizeText(image);
-      
-      
+        //Show image on second activity
         File file = new File(filepath);
         if (file.exists()) {
             System.out.println("File does exist");
@@ -58,22 +51,13 @@ public class ResultsActivity extends AppCompatActivity {
             System.out.println("File does not exist");
         }
 
-//        ExifInterface exif = new ExifInterface(filepath);
-//        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
 
-//        Matrix matrix = new Matrix();
-//        matrix.postRotate(90);
-//        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-//        ImageView imageView = findViewById(R.id.image_view);
 
-//        imageView.setImageBitmap(rotatedBitmap);
+        Bitmap testImage = getBitmapFromAsset(this, "test2.png");
 
-//        Matrix matrix = new Matrix();
-//        matrix.postRotate(90);
-//        Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
-//        ImageView imageView = findViewById(R.id.image_view);
-//        imageView.setImageBitmap(rotatedBitmap);
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(testImage);
 
+        recognizeText(image);
     }
 
     private void recognizeText(FirebaseVisionImage image) {

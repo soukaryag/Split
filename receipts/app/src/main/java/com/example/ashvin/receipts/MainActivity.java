@@ -105,8 +105,5 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
-//        Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
-//        intent.putExtra("Path", currentPhotoPath);
-//        startActivity(intent);
     }
 }
