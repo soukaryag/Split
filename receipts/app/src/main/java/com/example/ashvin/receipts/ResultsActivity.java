@@ -6,6 +6,8 @@ import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.media.ExifInterface;
+import android.net.Uri;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -14,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.widget.ImageView;
 
+import java.io.File;
+import java.io.IOException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -38,28 +42,40 @@ public class ResultsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        Intent intent = getIntent();
-        Bitmap bitmap = (Bitmap) intent.getParcelableExtra("BitmapImage");
+        String filepath = getIntent().getStringExtra("Path");
 
-        Bitmap testImage = getBitmapFromAsset(this, "test4.jpg");
+        Bitmap testImage = getBitmapFromAsset(this, "test2.png");
 
-        TextRecognizer txtRecog = new TextRecognizer.Builder(getApplicationContext()).build();
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(testImage);
 
-        if(txtRecog.isOperational()){
-            System.out.println("Text Recog is operational");
-            Frame frame = new Frame.Builder().setBitmap(testImage).build();
-            SparseArray<TextBlock> items = txtRecog.detect(frame);
+        recognizeText(image);
 
-            for(int i = 0; i < items.size(); i++){
-                TextBlock item = items.valueAt(i);
-                System.out.println("Text: " + item.getValue());
-            }
+
+        File file = new File(filepath);
+        if (file.exists()) {
+            System.out.println("File does exist");
+            ImageView imageView = findViewById(R.id.image_view);
+            imageView.setImageURI(Uri.fromFile(file));
+        }
+        else {
+            System.out.println("File does not exist");
         }
 
-
-//        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(testImage);
+//        TextRecognizer txtRecog = new TextRecognizer.Builder(getApplicationContext()).build();
 //
-//        recognizeText(image);
+//        if(txtRecog.isOperational()){
+//            System.out.println("Text Recog is operational");
+//            Frame frame = new Frame.Builder().setBitmap(testImage).build();
+//            SparseArray<TextBlock> items = txtRecog.detect(frame);
+//
+//            for(int i = 0; i < items.size(); i++){
+//                TextBlock item = items.valueAt(i);
+//                System.out.println("Text: " + item.getValue());
+//            }
+//        }
+
+//        ExifInterface exif = new ExifInterface(filepath);
+//        int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
 
 //        Matrix matrix = new Matrix();
 //        matrix.postRotate(90);
@@ -164,5 +180,4 @@ public class ResultsActivity extends AppCompatActivity {
 
         return bitmap;
     }
-
 }
