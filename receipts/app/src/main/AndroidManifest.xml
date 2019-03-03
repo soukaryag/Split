@@ -5,6 +5,7 @@
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
 
     <application
@@ -23,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ResultsActivity"></activity>
-
+        <activity android:name=".FinalActivity"></activity>
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"
             android:value="ocr" />

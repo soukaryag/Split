@@ -45,9 +45,15 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dispatchTakePictureIntent();
+                d();
             }
         });
+//        button.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                dispatchTakePictureIntent();
+//            }
+//        });
     }
 
 //    private void dispatchTakePictureIntent() {
@@ -56,6 +62,12 @@ public class MainActivity extends AppCompatActivity {
 //            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
 //        }
 //    }
+
+
+    private void d(){
+        Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
