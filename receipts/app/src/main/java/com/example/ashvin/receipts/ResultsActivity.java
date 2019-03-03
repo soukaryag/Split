@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import android.util.SparseArray;
+import android.view.Window;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -41,6 +42,9 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bart a
 
         String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);
