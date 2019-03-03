@@ -26,7 +26,6 @@ import java.io.IOException;
 import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
-//    static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath;
     String currentFileName;
@@ -57,12 +56,6 @@ public class MainActivity extends AppCompatActivity {
 //        });
     }
 
-//    private void dispatchTakePictureIntent() {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//        }
-//    }
 
 
     @Override
@@ -115,8 +108,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
-//        Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
-//        intent.putExtra("Path", currentPhotoPath);
-//        startActivity(intent);
+
     }
 }
