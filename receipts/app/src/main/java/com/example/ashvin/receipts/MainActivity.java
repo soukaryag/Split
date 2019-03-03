@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
             intent.putExtra("Path", currentPhotoPath);
             intent.putExtra("Filename", currentFileName);
-            intente.putExtra("GroupName", groupName);
             startActivity(intent);
         }
     }
