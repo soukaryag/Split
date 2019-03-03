@@ -77,7 +77,7 @@ public class FinalActivity extends Activity {
                 }
             }
         });
-        pieView.selectedPie(2);
+        pieView.selectedPie(0);
     }
 
     private void d(){
