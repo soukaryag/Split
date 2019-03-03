@@ -1,6 +1,7 @@
 package com.example.ashvin.receipts;
 
 import android.app.Application;
+import android.content.ActivityNotFoundException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Window;
@@ -19,6 +20,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
+
 import android.widget.Spinner;
 
 import java.text.SimpleDateFormat;
@@ -29,11 +33,14 @@ import java.io.IOException;
 
 import com.example.ashvin.receipts.ResultsActivity;
 import com.google.firebase.FirebaseApp;
+import com.theartofdev.edmodo.cropper.CropImage;
 
 public class MainActivity extends AppCompatActivity {
     static final int REQUEST_TAKE_PHOTO = 1;
-    String currentPhotoPath;
-    String currentFileName;
+    static final int REQUEST_CROP = 2;
+    private String currentPhotoPath;
+    private String currentFileName;
+    private Uri photoURI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +79,32 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
-            Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
-            intent.putExtra("Path", currentPhotoPath);
-            intent.putExtra("Filename", currentFileName);
-            startActivity(intent);
+
+            if(requestCode == REQUEST_TAKE_PHOTO){
+
+                CropImage.activity(photoURI)
+                        .start(this);
+            }
+
+            else if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+                CropImage.ActivityResult result = CropImage.getActivityResult(data);
+                if (resultCode == RESULT_OK) {
+                    Uri resultUri = result.getUri();
+                    File myFile = new File(resultUri.getPath());
+                    System.out.println("Old path: " + currentPhotoPath);
+                    System.out.println("New Path: " + myFile.getAbsolutePath());
+
+                    Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
+                    intent.putExtra("Path", myFile.getAbsolutePath());
+                    intent.putExtra("Filename", currentFileName);
+                    startActivity(intent);
+
+                } else if (resultCode == CropImage.CROP_IMAGE_ACTIVITY_RESULT_ERROR_CODE) {
+                    Exception error = result.getError();
+                }
+
+
+            }
         }
     }
 
@@ -112,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             }
             // Continue only if the File was successfully created
             if (photoFile != null) {
-                Uri photoURI = FileProvider.getUriForFile(this,
+                photoURI = FileProvider.getUriForFile(this,
                         "com.example.android.fileprovider",
                         photoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
