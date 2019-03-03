@@ -41,12 +41,17 @@ import com.google.firebase.ml.vision.text.RecognizedLanguage;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.regex.Pattern;
 
 public class ResultsActivity extends AppCompatActivity {
     private int item1Clicks = 0;
     private int item2Clicks = 0;
     private int[] colors = {Color.WHITE, Color.GREEN, Color.BLUE};
+    private HashMap<String, Double> priceMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,48 +60,6 @@ public class ResultsActivity extends AppCompatActivity {
         getSupportActionBar().hide(); // hide the title bart a
 
         setContentView(R.layout.activity_results);
-
-        //HardCoded Stuff
-        TextView name = (TextView) findViewById(R.id.person_id);
-        name.setText("Soukarya");
-
-        final Button item1 = (Button) findViewById(R.id.item1);
-        item1.setText("McDonalds                $1.00");
-        item1.setBackground(updateButtonBorder1());
-        item1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                item1Clicks += 1;
-                item1.setBackground(updateButtonBorder1());
-            }
-        });
-
-        final Button item2 = (Button) findViewById(R.id.item2);
-        item2.setText("S Caramel Mocha          $2.00");
-        item2.setBackground(updateButtonBorder2());
-        item2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                item2Clicks += 1;
-                item2.setBackground(updateButtonBorder2());
-            }
-        });
-
-        TextView groupName = (TextView) findViewById(R.id.group_name);
-        groupName.setText("HooHacks Squad:");
-
-        TextView color1 = (TextView) findViewById(R.id.color1);
-        color1.setText("Green:");
-
-        TextView color2 = (TextView) findViewById(R.id.color2);
-        color2.setText("Blue");
-
-        TextView member1 = (TextView) findViewById(R.id.member1);
-        member1.setText("Ashvin V.");
-
-        TextView member2 = (TextView) findViewById(R.id.member2);
-        member2.setText("Edwin Y.");
-
 
         String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);
@@ -143,6 +106,47 @@ public class ResultsActivity extends AppCompatActivity {
 //            }
 //        }
 
+        //HardCoded Stuff
+        TextView name = (TextView) findViewById(R.id.person_id);
+        name.setText("Soukarya");
+
+        final Button item1 = (Button) findViewById(R.id.item1);
+        item1.setText("McDonalds                $1.00");
+        item1.setBackground(updateButtonBorder1());
+        item1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item1Clicks += 1;
+                item1.setBackground(updateButtonBorder1());
+            }
+        });
+
+        final Button item2 = (Button) findViewById(R.id.item2);
+        item2.setText("S Caramel Mocha          $2.00");
+        item2.setBackground(updateButtonBorder2());
+        item2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item2Clicks += 1;
+                item2.setBackground(updateButtonBorder2());
+            }
+        });
+
+        TextView groupName = (TextView) findViewById(R.id.group_name);
+        groupName.setText("HooHacks Squad:");
+
+        TextView color1 = (TextView) findViewById(R.id.color1);
+        color1.setText("Green:");
+
+        TextView color2 = (TextView) findViewById(R.id.color2);
+        color2.setText("Blue");
+
+        TextView member1 = (TextView) findViewById(R.id.member1);
+        member1.setText("Ashvin V.");
+
+        TextView member2 = (TextView) findViewById(R.id.member2);
+        member2.setText("Edwin Y.");
+
     }
 
     private void recognizeText(FirebaseVisionImage image) {
@@ -184,6 +188,26 @@ public class ResultsActivity extends AppCompatActivity {
         // [START mlkit_process_text_block]
         String resultText = result.getText();
 
+        HashMap<String, Integer> amountMap = new HashMap<>();
+        HashMap<String, Integer> wordMap = new HashMap<>();
+
+        ArrayList<String> blacklist = new ArrayList<>();
+        blacklist.add("tax");
+        blacklist.add("%");
+        blacklist.add("subtotal");
+        blacklist.add("total");
+        blacklist.add("cash");
+        blacklist.add("change");
+        blacklist.add("paid");
+        blacklist.add("less");
+        blacklist.add("ashless");
+        blacklist.add("shless");
+        blacklist.add("chang");
+
+        int offset = 100;
+
+        priceMap = new HashMap<>();
+
         for (FirebaseVisionText.TextBlock block: result.getTextBlocks()) {
             System.out.println("#################");
             String blockText = block.getText();
@@ -200,18 +224,62 @@ public class ResultsActivity extends AppCompatActivity {
                 List<RecognizedLanguage> lineLanguages = line.getRecognizedLanguages();
                 Point[] lineCornerPoints = line.getCornerPoints();
                 Rect lineFrame = line.getBoundingBox();
+
+                boolean matchDollarAmt = Pattern.matches("^\\d+[.]\\d{2}$",lineText);
+                int yCoord = lineCornerPoints[0].y;
+                System.out.println("Current point: " + yCoord);
+                if(matchDollarAmt){
+                    amountMap.put(lineText, yCoord);
+                }
+                else{
+                    wordMap.put(lineText,yCoord);
+                }
+
                 for (FirebaseVisionText.Element element: line.getElements()) {
                     String elementText = element.getText();
-                    System.out.println("Element: " + elementText);
+//                    System.out.println("Element: " + elementText);
                     Float elementConfidence = element.getConfidence();
                     List<RecognizedLanguage> elementLanguages = element.getRecognizedLanguages();
                     Point[] elementCornerPoints = element.getCornerPoints();
-                    System.out.println("First Point: " + elementCornerPoints[0].toString());
+//                    System.out.println("First Point: " + elementCornerPoints[0].toString());
                     Rect elementFrame = element.getBoundingBox();
                 }
                 System.out.println("-------------------");
             }
             System.out.println("#################");
+        }
+
+        for(String word: wordMap.keySet()){
+
+            int yCoord = wordMap.get(word);
+
+            for(String amt: amountMap.keySet()){
+                double price = Double.parseDouble(amt);
+
+                if(Math.abs(amountMap.get(amt) - yCoord) <= offset){
+
+                    boolean valid = true;
+
+                    for(String blacklisted: blacklist){
+                        if(word.toLowerCase().contains(blacklisted)){
+                            System.out.println("blacklist: " + word);
+                            valid = false;
+                            break;
+                        }
+                    }
+
+                    if(valid){
+                        priceMap.put(word, price);
+                        System.out.println("Added: " + word);
+                    }
+
+                }
+            }
+
+        }
+
+        for(String key: priceMap.keySet()){
+            System.out.println("Item name: " + key + " , Price: " + priceMap.get(key));
         }
         // [END mlkit_process_text_block]
     }
