@@ -1,5 +1,4 @@
-# Split
-The new way to split the bill
+# Split: *The new way to split the bill*
 
 ## Inspiration
 
