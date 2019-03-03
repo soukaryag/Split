@@ -120,5 +120,8 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+//        Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
+//        startActivity(intent);
+
     }
 }
