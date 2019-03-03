@@ -1,52 +1,74 @@
 package com.example.ashvin.receipts;
 
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Window;
-import android.webkit.WebView;
-import android.content.Context;
-import android.content.Intent;
-import android.content.res.AssetManager;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
-import android.media.ExifInterface;
-import android.net.Uri;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-import android.util.SparseArray;
-import android.webkit.WebView;
-import android.widget.ImageView;
 
-import java.io.File;
-import java.io.IOException;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.vision.Frame;
-import com.google.android.gms.vision.text.TextBlock;
-import com.google.android.gms.vision.text.TextRecognizer;
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.common.FirebaseVisionImage;
-import com.google.firebase.ml.vision.text.FirebaseVisionText;
-import com.google.firebase.ml.vision.text.FirebaseVisionTextRecognizer;
-import com.google.firebase.ml.vision.text.RecognizedLanguage;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.List;
-
-public class FinalActivity extends AppCompatActivity  {
+public class FinalActivity extends Activity {
+    private TextView textView;
+    PieView pieView;
+    Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bar
-
         setContentView(R.layout.activity_final);
+        textView = (TextView)findViewById(R.id.textView);
+        pieView = (PieView)findViewById(R.id.pie_view);
+        button = (Button)findViewById(R.id.pie_button);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                randomSet(pieView);
+            }
+        });
+        set(pieView);
     }
+    private void randomSet(PieView pieView){
+        ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
+        ArrayList<Integer> intList = new ArrayList<Integer>();
+        int totalNum = (int) (5*Math.random()) + 5;
+
+        int totalInt = 0;
+        for(int i=0; i<totalNum; i++){
+            int ranInt = (int)(Math.random()*10)+1;
+            intList.add(ranInt);
+            totalInt += ranInt;
+        }
+        for(int i=0; i<totalNum; i++){
+            pieHelperArrayList.add(new PieHelper(100f*intList.get(i)/totalInt));
+        }
+
+        pieView.selectedPie(PieView.NO_SELECTED_INDEX);
+        pieView.showPercentLabel(true);
+        pieView.setDate(pieHelperArrayList);
+    }
+
+    private void set(PieView pieView){
+        ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
+        pieHelperArrayList.add(new PieHelper(20, Color.BLACK));
+        pieHelperArrayList.add(new PieHelper(6));
+        pieHelperArrayList.add(new PieHelper(30));
+        pieHelperArrayList.add(new PieHelper(12));
+        pieHelperArrayList.add(new PieHelper(32));
+
+        pieView.setDate(pieHelperArrayList);
+        pieView.setOnPieClickListener(new PieView.OnPieClickListener() {
+            @Override
+            public void onPieClick(int index) {
+                if(index != PieView.NO_SELECTED_INDEX) {
+                    textView.setText(index + " selected");
+                }else{
+                    textView.setText("No selected pie");
+                }
+            }
+        });
+        pieView.selectedPie(2);
+    }
+
 }

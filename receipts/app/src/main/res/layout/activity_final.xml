@@ -1,46 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#ffffff">
 
-    <TextView
-        android:id="@+id/summary_title"
+    <view
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        class="com.example.ashvin.receipts.PieView"
+        android:id="@+id/pie_view"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp" />
+
+
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Hello, Nick"/>
+        android:text="Random"
+        android:id="@+id/pie_button"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
-        android:id="@+id/summary_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summary_title"
-        tools:text="Your recent transactions for Card x1234:"/>
+        android:text="New Text"
+        android:id="@+id/textView"
+        android:layout_above="@+id/pie_button"
+        android:layout_centerHorizontal="true" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/transaction_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_margin="8dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/summary_subtitle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/view_transaction" />
-
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>
