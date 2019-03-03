@@ -63,6 +63,7 @@ public class ResultsActivity extends AppCompatActivity {
 
     private ArrayList<Integer> buttonClicks = new ArrayList<>();
     private HashMap<String, Double> priceMap;
+    private ArrayList<String> itemNames = new ArrayList<>();
     Button button2;
     Button button3;
 
@@ -80,20 +81,16 @@ public class ResultsActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
+                intent.putExtra("ButtonClicks", buttonClicks);
+                intent.putExtra("ItemNames", itemNames);
+                intent.putExtra("PriceMap", priceMap);
                 startActivity(intent);
+
+                System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
             }
         });
 
-        button3 = (Button)findViewById(R.id.button_retake);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        HashMap<String,Double> priceMap = (HashMap<String, Double>)getIntent().getSerializableExtra("PriceMap");
+        priceMap = (HashMap<String, Double>)getIntent().getSerializableExtra("PriceMap");
         for(String key: priceMap.keySet()){
             System.out.println("Item name: " + key + " , Price: " + priceMap.get(key));
         }
@@ -117,6 +114,7 @@ public class ResultsActivity extends AppCompatActivity {
             final int index = currId;
 
             buttonClicks.add(0);
+            itemNames.add(item);
 
             btn.setWidth(900);
 
@@ -125,7 +123,7 @@ public class ResultsActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
 
-            params.setMargins(55, 160, 55, -70);
+            params.setMargins(55, 210, 55, -90);
             params.gravity = Gravity.CENTER_HORIZONTAL;
             btn.setLayoutParams(params);
 
@@ -138,6 +136,7 @@ public class ResultsActivity extends AppCompatActivity {
                     int num = buttonClicks.get(index);
                     buttonClicks.set(index,num+1);
                     btn.setBackground(updateButtonBorder(index));
+                    System.out.println("++++++++++++++++++++++++++========++++++++++++++++++++");
                 }
             });
 
@@ -152,6 +151,20 @@ public class ResultsActivity extends AppCompatActivity {
 
         TextView member2 = (TextView) findViewById(R.id.member2);
         member2.setText("Edwin Y.");
+
+        button3 = (Button)findViewById(R.id.button_retake);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//                intent.putExtra("ButtonClicks", buttonClicks);
+//                intent.putExtra("ItemNames", itemNames);
+//                intent.putExtra("PriceMap", priceMap);
+                System.out.println("Is null? " + buttonClicks == null);
+                startActivity(intent);
+            }
+        });
+
 
     }
 
