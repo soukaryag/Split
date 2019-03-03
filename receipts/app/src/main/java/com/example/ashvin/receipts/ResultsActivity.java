@@ -20,6 +20,7 @@ import android.graphics.Paint.Style;
 import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
+import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -93,6 +94,8 @@ public class ResultsActivity extends AppCompatActivity {
         TextView member2 = (TextView) findViewById(R.id.member2);
         member2.setText("Edwin Y.");
 
+        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bart a
 
         String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);

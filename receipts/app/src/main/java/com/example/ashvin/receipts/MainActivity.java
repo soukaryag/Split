@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
@@ -108,5 +108,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
+
     }
 }
