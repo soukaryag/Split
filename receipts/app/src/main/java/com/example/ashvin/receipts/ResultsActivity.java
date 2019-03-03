@@ -51,6 +51,9 @@ public class ResultsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        getSupportActionBar().hide(); // hide the title bart a
+
         setContentView(R.layout.activity_results);
 
         //HardCoded Stuff
@@ -80,7 +83,7 @@ public class ResultsActivity extends AppCompatActivity {
         });
 
         TextView groupName = (TextView) findViewById(R.id.group_name);
-        groupName.setText("Group 1:");
+        groupName.setText("HooHacks Squad:");
 
         TextView color1 = (TextView) findViewById(R.id.color1);
         color1.setText("Green:");
@@ -94,8 +97,6 @@ public class ResultsActivity extends AppCompatActivity {
         TextView member2 = (TextView) findViewById(R.id.member2);
         member2.setText("Edwin Y.");
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bart a
 
         String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);
