@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 //    static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath;
+    String currentFileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK) {
             Intent intent = new Intent(getApplicationContext(), ResultsActivity.class);
             intent.putExtra("Path", currentPhotoPath);
+            intent.putExtra("Filename", currentFileName);
             startActivity(intent);
         }
     }
@@ -91,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath();
+        currentFileName = imageFileName;
         System.out.println("Image Path: " + image);
         System.out.println("Current Photo Path: " + currentPhotoPath);
         return image;
