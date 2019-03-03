@@ -9,7 +9,7 @@ Split allows a group to divide up the costs of a bill with ease. By using an Opt
 Split also has a semi-Venmo (Nessie) integration that allows for money requests to be automatically made based on the split of the bill. All of the tediousness of current-day bill splitting is alleviated with this smart implementation of a century-long problem.
 
 ## How we built it
-We built the app using Android Studio and Google's Cloud Vision API. The main language used was Java along with architecturally integrated Kotlin and C++. Google Firebase was also used to make the OCR functional and work in real time along with the many other aspects of this application.
+We built the app using Android Studio (Java) and Google's Cloud Vision API. Google Firebase was also used to make the OCR functional and work in real time along with the many other aspects of this application.
 
 ## Challenges we ran into
 There were a plethora of concerns and conflicts we ran into throughout the development process. The biggest challenge was making everything work in real-time and allowing the machine learning model to pass values of real world receipts to the data pipeline of the application.
