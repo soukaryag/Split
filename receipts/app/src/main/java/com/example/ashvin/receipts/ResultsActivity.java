@@ -125,7 +125,7 @@ public class ResultsActivity extends AppCompatActivity {
                     LinearLayout.LayoutParams.WRAP_CONTENT
             );
 
-            params.setMargins(55, 160, 55, -70);
+            params.setMargins(55, 200, 55, -70);
             params.gravity = Gravity.CENTER_HORIZONTAL;
             btn.setLayoutParams(params);
 
