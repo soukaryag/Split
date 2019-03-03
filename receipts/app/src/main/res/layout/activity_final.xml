@@ -66,9 +66,10 @@
                         android:textSize="20sp"
                         />
                     <TextView
+                        android:id="@+id/totalAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$3.28"
+                        android:text="0"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:paddingTop="10dp"
@@ -88,9 +89,10 @@
                         android:textSize="20sp"
                         />
                     <TextView
+                        android:id="@+id/owedAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$3.00"
+                        android:text="0"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:paddingTop="10dp"
@@ -110,9 +112,10 @@
                         android:textSize="20sp"
                         />
                     <TextView
+                        android:id="@+id/paidAmount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="$0.28"
+                        android:text="0"
                         android:textStyle="bold"
                         android:textSize="20sp"
                         android:paddingTop="10dp"
@@ -142,9 +145,10 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/payerOne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Requested Ashvin V. for $2"
+                    android:text="n/a"
                     android:textSize="20sp"
                     />
             </LinearLayout>
@@ -171,9 +175,10 @@
                 android:layout_weight="1"
                 android:layout_height="match_parent">
                 <TextView
+                    android:id="@+id/payerTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Requested Edwin Y. for $1"
+                    android:text="n/a"
                     android:textSize="20sp"
                     />
             </LinearLayout>

@@ -88,7 +88,7 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-        
+
         if (file.exists()) {
             System.out.println("File does exist");
 //            ImageView imageView = findViewById(R.id.image_view);
