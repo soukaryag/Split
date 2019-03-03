@@ -10,6 +10,8 @@ public class PieHelper {
     private int color;
     private float sweepDegree;
 
+    private float dollars;
+
     int velocity = 5;
 
 
@@ -17,8 +19,8 @@ public class PieHelper {
         this(percent, null, 0);
     }
 
-    public PieHelper(float percent, int color){
-        this(percent, null, color);
+    public PieHelper(float percent, int color, String title){
+        this(percent, title, color);
     }
 
 
@@ -28,6 +30,7 @@ public class PieHelper {
 
 
     PieHelper(float percent, String title, int color){
+        this.dollars = percent * 300;
         this.sweepDegree = percent * 360 / 100;
         this.title = title;
         this.color = color;
@@ -71,8 +74,9 @@ public class PieHelper {
     }
 
     String getPercentStr(){
-        float percent = sweepDegree / 360 * 100;
-        return String.valueOf((int)percent) + "%";
+        float percent = sweepDegree / 360;
+        //return String.valueOf((int)percent) + "%";
+        return this.title + " $" + (String.valueOf((int)Math.round(3*percent)));
     }
 
     public int getColor(){ return color; }

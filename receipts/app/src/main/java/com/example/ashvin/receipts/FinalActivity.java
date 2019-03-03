@@ -53,8 +53,8 @@ public class FinalActivity extends Activity {
 //            pieHelperArrayList.add(new PieHelper(100f*intList.get(i)/totalInt));
 //        }
 
-        pieHelperArrayList.add(new PieHelper(1/3));
-        pieHelperArrayList.add(new PieHelper(2/3));
+        pieHelperArrayList.add(new PieHelper(34, "Ashvin"));
+        pieHelperArrayList.add(new PieHelper(66, "Edwin"));
 
         pieView.selectedPie(PieView.NO_SELECTED_INDEX);
         pieView.showPercentLabel(true);
@@ -63,8 +63,8 @@ public class FinalActivity extends Activity {
 
     private void set(PieView pieView){
         ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
-        pieHelperArrayList.add(new PieHelper(66, Color.rgb(46, 134, 222)));
-        pieHelperArrayList.add(new PieHelper(34, Color.rgb(16, 172, 132)));
+        pieHelperArrayList.add(new PieHelper(66, Color.rgb(46, 134, 222), "Edwin"));
+        pieHelperArrayList.add(new PieHelper(34, Color.rgb(16, 172, 132), "Ashvin"));
 
         pieView.setDate(pieHelperArrayList);
         pieView.setOnPieClickListener(new PieView.OnPieClickListener() {
