@@ -51,18 +51,18 @@ public class ResultsActivity extends AppCompatActivity {
             ImageView imageView = findViewById(R.id.image_view);
             imageView.setImageURI(Uri.fromFile(file));
 
-            try {
-                ExifInterface exif = new ExifInterface(filepath);
-                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-                System.out.println("Orientation: " + orientation);
-
-                Matrix matrix = new Matrix();
-                matrix.postRotate(90);
-                Bitmap rotatedBitmap = Bitmap.createBitmap(testImage, 0, 0, testImage.getWidth(), testImage.getHeight(), matrix, true);
-                testImage = rotatedBitmap;
-            } catch(IOException err) {
-                System.out.println(err);
-            }
+//            try {
+//                ExifInterface exif = new ExifInterface(filepath);
+//                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+//                System.out.println("Orientation: " + orientation);
+//
+//                Matrix matrix = new Matrix();
+//                matrix.postRotate(90);
+//                Bitmap rotatedBitmap = Bitmap.createBitmap(testImage, 0, 0, testImage.getWidth(), testImage.getHeight(), matrix, true);
+//                testImage = rotatedBitmap;
+//            } catch(IOException err) {
+//                System.out.println(err);
+//            }
 
         }
         else {
@@ -111,6 +111,8 @@ public class ResultsActivity extends AppCompatActivity {
                         .addOnSuccessListener(new OnSuccessListener<FirebaseVisionText>() {
                             @Override
                             public void onSuccess(FirebaseVisionText firebaseVisionText) {
+
+                                System.out.println("Full text: " + firebaseVisionText.getText());
                                 // Task completed successfully
                                 // [START_EXCLUDE]
                                 // [START get_text]
@@ -138,6 +140,7 @@ public class ResultsActivity extends AppCompatActivity {
         for (FirebaseVisionText.TextBlock block: result.getTextBlocks()) {
             System.out.println("#################");
             String blockText = block.getText();
+            System.out.println("Current Block: " + blockText);
             Float blockConfidence = block.getConfidence();
             List<RecognizedLanguage> blockLanguages = block.getRecognizedLanguages();
             Point[] blockCornerPoints = block.getCornerPoints();
@@ -145,6 +148,7 @@ public class ResultsActivity extends AppCompatActivity {
             for (FirebaseVisionText.Line line: block.getLines()) {
                 System.out.println("-------------------");
                 String lineText = line.getText();
+                System.out.println("Current line: " + lineText);
                 Float lineConfidence = line.getConfidence();
                 List<RecognizedLanguage> lineLanguages = line.getRecognizedLanguages();
                 Point[] lineCornerPoints = line.getCornerPoints();
