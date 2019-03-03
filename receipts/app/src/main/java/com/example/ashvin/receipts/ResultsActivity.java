@@ -51,10 +51,10 @@ public class ResultsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_results);
-//        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+
         getSupportActionBar().hide(); // hide the title bart a
 
+        setContentView(R.layout.activity_results);
 
         //HardCoded Stuff
         TextView name = (TextView) findViewById(R.id.person_id);
@@ -83,7 +83,7 @@ public class ResultsActivity extends AppCompatActivity {
         });
 
         TextView groupName = (TextView) findViewById(R.id.group_name);
-        groupName.setText("Hoo Hacks Squad");
+        groupName.setText("HooHacks Squad:");
 
         TextView color1 = (TextView) findViewById(R.id.color1);
         color1.setBackground(updateButtonBorder3());
@@ -98,6 +98,7 @@ public class ResultsActivity extends AppCompatActivity {
 
         TextView member2 = (TextView) findViewById(R.id.member2);
         member2.setText("Edwin Y.");
+
 
         String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);
@@ -267,6 +268,7 @@ public class ResultsActivity extends AppCompatActivity {
         sd.getPaint().setStyle(Style.STROKE);
         return sd;
     }
+
     public ShapeDrawable updateButtonBorder3() {
         ShapeDrawable sd = new ShapeDrawable();
         sd.setShape(new RectShape());
@@ -283,5 +285,4 @@ public class ResultsActivity extends AppCompatActivity {
         sd.getPaint().setStyle(Style.STROKE);
         return sd;
     }
-
 }

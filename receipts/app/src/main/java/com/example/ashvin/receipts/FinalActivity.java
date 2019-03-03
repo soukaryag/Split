@@ -3,6 +3,7 @@ package com.example.ashvin.receipts;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ public class FinalActivity extends Activity {
     private TextView textView;
     PieView pieView;
     Button button;
+    Button button2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,6 +27,13 @@ public class FinalActivity extends Activity {
             @Override
             public void onClick(View view) {
                 randomSet(pieView);
+            }
+        });
+        button2 = (Button)findViewById(R.id.button_id_home);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                d();
             }
         });
         set(pieView);
@@ -69,6 +78,11 @@ public class FinalActivity extends Activity {
             }
         });
         pieView.selectedPie(2);
+    }
+
+    private void d(){
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        startActivity(intent);
     }
 
 }
