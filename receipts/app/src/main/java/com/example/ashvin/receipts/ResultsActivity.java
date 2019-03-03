@@ -69,8 +69,8 @@ public class ResultsActivity extends AppCompatActivity {
             System.out.println("File does not exist");
         }
 
-        Bitmap test_image = getBitmapFromAsset(this,"target.jpg");
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(test_image);
+//        Bitmap test_image = getBitmapFromAsset(this,"target.jpg");
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(testImage);
 
         recognizeText(image);
 
