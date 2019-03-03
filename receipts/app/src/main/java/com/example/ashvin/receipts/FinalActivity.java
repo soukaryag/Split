@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import java.text.DecimalFormat;
+import java.util.HashMap;
 
 
 public class FinalActivity extends Activity {
@@ -27,17 +28,35 @@ public class FinalActivity extends Activity {
     String p1amount;
     String p2amount;
 
+    float percentEd; //payer2
+    float percentAs; //payer1
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final);
 
         DecimalFormat df = new DecimalFormat("0.00");
+        ArrayList<Integer> buttonClicks = (ArrayList<Integer>) getIntent().getSerializableExtra("ButtonClicks"); //0= souakrya, 1 = edwin, 2 =ashvin
+        HashMap<String, Double> priceMap = (HashMap<String, Double>) getIntent().getSerializableExtra("PriceMap"); //
+        ArrayList<String> itemNames = (ArrayList<String>) getIntent().getSerializableExtra("ItemNames");
 
-        this.total = "3.28";   //need this value
+        float temp1 = 0;
+        float temp2 = 0;
+        for(int i = 0; i < buttonClicks.size(); i++){
+            if(buttonClicks.get(i) == 1){  //edwin   (2)
+                temp2 = temp2 + (priceMap.get(itemNames.get(i))).floatValue();
+            }
+            else if(buttonClicks.get(i) == 2){ //ashvin  (1)
+                temp1 = temp1 + (priceMap.get(itemNames.get(i))).floatValue();
+            }
+        }
 
-        this.p1amount = "2.00";  //need this value
-        this.p2amount = "1.00";  //need this value
+        this.p1amount = String.valueOf(df.format(temp1));  //need this value
+        this.p2amount = String.valueOf(df.format(temp2));  //need this value
+
+
+        this.total = String.valueOf(df.format(temp1 + temp2));   //need this value
 
         this.owed = String.valueOf(df.format(Float.parseFloat(p1amount) + Float.parseFloat(p2amount)));
 
@@ -53,12 +72,15 @@ public class FinalActivity extends Activity {
         owedField.setText("$" + owed);
 
         TextView p1Field = (TextView) findViewById(R.id.payerOne);
-        p1Field.setText("Requested from Ashvin V. $" + p1amount);
+        p1Field.setText("Requested Ashvin V. for $" + p1amount);
 
         TextView p2Field = (TextView) findViewById(R.id.payerTwo);
-        p2Field.setText("Requested from Edwin Y. $" + p2amount);
+        p2Field.setText("Requested Edwin Y. for $" + p2amount);
 
 
+
+        percentEd = (Float.parseFloat(p1amount) / Float.parseFloat(owed)) *100;
+        percentAs = (Float.parseFloat(p2amount) / Float.parseFloat(owed)) *100;
 
 
         textView = (TextView)findViewById(R.id.textView);
@@ -77,7 +99,7 @@ public class FinalActivity extends Activity {
                 d();
             }
         });
-        set(pieView);
+        set(pieView, this.percentAs, this.percentEd, Float.parseFloat(total));
     }
     private void randomSet(PieView pieView){
         ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
@@ -94,18 +116,18 @@ public class FinalActivity extends Activity {
 //            pieHelperArrayList.add(new PieHelper(100f*intList.get(i)/totalInt));
 //        }
 
-        pieHelperArrayList.add(new PieHelper(34, "Ashvin"));
-        pieHelperArrayList.add(new PieHelper(66, "Edwin"));
+        pieHelperArrayList.add(new PieHelper(10, "blah"));   //not important
+        pieHelperArrayList.add(new PieHelper(90, "blah"));
 
         pieView.selectedPie(PieView.NO_SELECTED_INDEX);
         pieView.showPercentLabel(true);
         pieView.setDate(pieHelperArrayList);
     }
 
-    private void set(PieView pieView){
+    private void set(PieView pieView, float percentAs, float percentEd, float total){
         ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
-        pieHelperArrayList.add(new PieHelper(66, Color.rgb(46, 134, 222), "Edwin"));
-        pieHelperArrayList.add(new PieHelper(34, Color.rgb(16, 172, 132), "Ashvin"));
+        pieHelperArrayList.add(new PieHelper(percentEd, Color.rgb(46, 134, 222), "Ashvin", total));
+        pieHelperArrayList.add(new PieHelper(percentAs, Color.rgb(16, 172, 132), "Edwin", total));
 
         pieView.setDate(pieHelperArrayList);
         pieView.setOnPieClickListener(new PieView.OnPieClickListener() {
