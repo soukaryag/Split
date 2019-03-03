@@ -5,16 +5,23 @@ import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Matrix;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RectShape;
 import android.media.ExifInterface;
 import android.net.Uri;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.graphics.Paint.Style;
 
 import android.util.SparseArray;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
@@ -36,11 +43,56 @@ import java.io.InputStream;
 import java.util.List;
 
 public class ResultsActivity extends AppCompatActivity {
-    @Override
+    private int item1Clicks = 0;
+    private int item2Clicks = 0;
+    private int[] colors = {Color.WHITE, Color.GREEN, Color.BLUE};
 
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        //HardCoded Stuff
+        TextView name = (TextView) findViewById(R.id.person_id);
+        name.setText("Soukarya");
+
+        final Button item1 = (Button) findViewById(R.id.item1);
+        item1.setText("McDonalds                $1.00");
+        item1.setBackground(updateButtonBorder1());
+        item1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item1Clicks += 1;
+                item1.setBackground(updateButtonBorder1());
+            }
+        });
+
+        final Button item2 = (Button) findViewById(R.id.item2);
+        item2.setText("S Caramel Mocha          $2.00");
+        item2.setBackground(updateButtonBorder2());
+        item2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item2Clicks += 1;
+                item2.setBackground(updateButtonBorder2());
+            }
+        });
+
+        TextView groupName = (TextView) findViewById(R.id.group_name);
+        groupName.setText("Group 1:");
+
+        TextView color1 = (TextView) findViewById(R.id.color1);
+        color1.setText("Green:");
+
+        TextView color2 = (TextView) findViewById(R.id.color2);
+        color2.setText("Blue");
+
+        TextView member1 = (TextView) findViewById(R.id.member1);
+        member1.setText("Ashvin V.");
+
+        TextView member2 = (TextView) findViewById(R.id.member2);
+        member2.setText("Edwin Y.");
+
 
         String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);
@@ -48,8 +100,8 @@ public class ResultsActivity extends AppCompatActivity {
 
         if (file.exists()) {
             System.out.println("File does exist");
-            ImageView imageView = findViewById(R.id.image_view);
-            imageView.setImageURI(Uri.fromFile(file));
+//            ImageView imageView = findViewById(R.id.image_view);
+//            imageView.setImageURI(Uri.fromFile(file));
 
             try {
                 ExifInterface exif = new ExifInterface(filepath);
@@ -194,4 +246,21 @@ public class ResultsActivity extends AppCompatActivity {
 
         return bitmap;
     }
+    public ShapeDrawable updateButtonBorder1() {
+        ShapeDrawable sd = new ShapeDrawable();
+        sd.setShape(new RectShape());
+        sd.getPaint().setColor(colors[item1Clicks % 3]);
+        sd.getPaint().setStrokeWidth(10f);
+        sd.getPaint().setStyle(Style.STROKE);
+        return sd;
+    }
+    public ShapeDrawable updateButtonBorder2() {
+        ShapeDrawable sd = new ShapeDrawable();
+        sd.setShape(new RectShape());
+        sd.getPaint().setColor(colors[item2Clicks % 3]);
+        sd.getPaint().setStrokeWidth(10f);
+        sd.getPaint().setStyle(Style.STROKE);
+        return sd;
+    }
+
 }
