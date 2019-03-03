@@ -27,6 +27,9 @@ public class FinalActivity extends Activity {
     String p1amount;
     String p2amount;
 
+    float percentEd; //payer2
+    float percentAs; //payer1
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +56,13 @@ public class FinalActivity extends Activity {
         owedField.setText("$" + owed);
 
         TextView p1Field = (TextView) findViewById(R.id.payerOne);
-        p1Field.setText("Requested from Ashvin V. $" + p1amount);
+        p1Field.setText("Requested Ashvin V. for $" + p1amount);
 
         TextView p2Field = (TextView) findViewById(R.id.payerTwo);
-        p2Field.setText("Requested from Edwin Y. $" + p2amount);
+        p2Field.setText("Requested Edwin Y. for $" + p2amount);
 
-
+        percentEd = (Float.parseFloat(p1amount) / Float.parseFloat(owed)) *100;
+        percentAs = (Float.parseFloat(p2amount) / Float.parseFloat(owed)) *100;
 
 
         textView = (TextView)findViewById(R.id.textView);
@@ -77,7 +81,7 @@ public class FinalActivity extends Activity {
                 d();
             }
         });
-        set(pieView);
+        set(pieView, this.percentAs, this.percentEd);
     }
     private void randomSet(PieView pieView){
         ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
@@ -94,18 +98,18 @@ public class FinalActivity extends Activity {
 //            pieHelperArrayList.add(new PieHelper(100f*intList.get(i)/totalInt));
 //        }
 
-        pieHelperArrayList.add(new PieHelper(34, "Ashvin"));
-        pieHelperArrayList.add(new PieHelper(66, "Edwin"));
+        pieHelperArrayList.add(new PieHelper(10, "blah"));   //not important
+        pieHelperArrayList.add(new PieHelper(90, "blah"));
 
         pieView.selectedPie(PieView.NO_SELECTED_INDEX);
         pieView.showPercentLabel(true);
         pieView.setDate(pieHelperArrayList);
     }
 
-    private void set(PieView pieView){
+    private void set(PieView pieView, float percentAs, float percentEd){
         ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
-        pieHelperArrayList.add(new PieHelper(66, Color.rgb(46, 134, 222), "Edwin"));
-        pieHelperArrayList.add(new PieHelper(34, Color.rgb(16, 172, 132), "Ashvin"));
+        pieHelperArrayList.add(new PieHelper(percentAs, Color.rgb(46, 134, 222), "Ashvin"));
+        pieHelperArrayList.add(new PieHelper(percentEd, Color.rgb(16, 172, 132), "Edwin"));
 
         pieView.setDate(pieHelperArrayList);
         pieView.setOnPieClickListener(new PieView.OnPieClickListener() {
