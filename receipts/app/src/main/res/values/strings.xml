@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">receipts</string>
+    <string-array name="groups_array">
+        <item>Family</item>
+        <item>Study Group</item>
+        <item>HooHacks Squad</item>
+    </string-array>
 </resources>
