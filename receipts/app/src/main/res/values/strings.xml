@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">receipts</string>
+    <string name="app_name">Split</string>
     <string-array name="groups_array">
         <item>Family</item>
         <item>Study Group</item>
