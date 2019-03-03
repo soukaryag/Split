@@ -13,6 +13,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import android.util.SparseArray;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -20,6 +21,9 @@ import java.io.IOException;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.text.TextBlock;
+import com.google.android.gms.vision.text.TextRecognizer;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.ml.vision.FirebaseVision;
 import com.google.firebase.ml.vision.common.FirebaseVisionImage;
@@ -37,27 +41,54 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
-      
-        String filepath = getIntent().getStringExtra("Path");
 
-        //Show image on second activity
+        String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);
+        Bitmap testImage = BitmapFactory.decodeFile(file.getAbsolutePath());
+
         if (file.exists()) {
             System.out.println("File does exist");
             ImageView imageView = findViewById(R.id.image_view);
             imageView.setImageURI(Uri.fromFile(file));
+
+            try {
+                ExifInterface exif = new ExifInterface(filepath);
+                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+                System.out.println("Orientaiton: " + orientation);
+
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(testImage, 0, 0, testImage.getWidth(), testImage.getHeight(), matrix, true);
+                testImage = rotatedBitmap;
+            } catch(IOException err) {
+                System.out.println(err);
+            }
+
+
         }
         else {
             System.out.println("File does not exist");
         }
 
-
-
-        Bitmap testImage = getBitmapFromAsset(this, "test2.png");
-
         FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(testImage);
 
         recognizeText(image);
+
+
+
+//        TextRecognizer txtRecog = new TextRecognizer.Builder(getApplicationContext()).build();
+//
+//        if(txtRecog.isOperational()){
+//            System.out.println("Text Recog is operational");
+//            Frame frame = new Frame.Builder().setBitmap(testImage).build();
+//            SparseArray<TextBlock> items = txtRecog.detect(frame);
+//
+//            for(int i = 0; i < items.size(); i++){
+//                TextBlock item = items.valueAt(i);
+//                System.out.println("Text: " + item.getValue());
+//            }
+//        }
+
     }
 
     private void recognizeText(FirebaseVisionImage image) {
@@ -97,28 +128,28 @@ public class ResultsActivity extends AppCompatActivity {
         // [START mlkit_process_text_block]
         String resultText = result.getText();
 
-        System.out.println("Printing: " + resultText);
-//        for (FirebaseVisionText.TextBlock block: result.getTextBlocks()) {
-//            String blockText = block.getText();
-//            Float blockConfidence = block.getConfidence();
-//            List<RecognizedLanguage> blockLanguages = block.getRecognizedLanguages();
-//            Point[] blockCornerPoints = block.getCornerPoints();
-//            Rect blockFrame = block.getBoundingBox();
-//            for (FirebaseVisionText.Line line: block.getLines()) {
-//                String lineText = line.getText();
-//                Float lineConfidence = line.getConfidence();
-//                List<RecognizedLanguage> lineLanguages = line.getRecognizedLanguages();
-//                Point[] lineCornerPoints = line.getCornerPoints();
-//                Rect lineFrame = line.getBoundingBox();
-//                for (FirebaseVisionText.Element element: line.getElements()) {
-//                    String elementText = element.getText();
-//                    Float elementConfidence = element.getConfidence();
-//                    List<RecognizedLanguage> elementLanguages = element.getRecognizedLanguages();
-//                    Point[] elementCornerPoints = element.getCornerPoints();
-//                    Rect elementFrame = element.getBoundingBox();
-//                }
-//            }
-//        }
+        for (FirebaseVisionText.TextBlock block: result.getTextBlocks()) {
+            String blockText = block.getText();
+            Float blockConfidence = block.getConfidence();
+            List<RecognizedLanguage> blockLanguages = block.getRecognizedLanguages();
+            Point[] blockCornerPoints = block.getCornerPoints();
+            Rect blockFrame = block.getBoundingBox();
+            for (FirebaseVisionText.Line line: block.getLines()) {
+                String lineText = line.getText();
+                Float lineConfidence = line.getConfidence();
+                List<RecognizedLanguage> lineLanguages = line.getRecognizedLanguages();
+                Point[] lineCornerPoints = line.getCornerPoints();
+                Rect lineFrame = line.getBoundingBox();
+                for (FirebaseVisionText.Element element: line.getElements()) {
+                    String elementText = element.getText();
+                    System.out.println("Text: " + elementText);
+                    Float elementConfidence = element.getConfidence();
+                    List<RecognizedLanguage> elementLanguages = element.getRecognizedLanguages();
+                    Point[] elementCornerPoints = element.getCornerPoints();
+                    Rect elementFrame = element.getBoundingBox();
+                }
+            }
+        }
         // [END mlkit_process_text_block]
     }
 

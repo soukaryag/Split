@@ -26,7 +26,6 @@ import java.io.IOException;
 import com.google.firebase.FirebaseApp;
 
 public class MainActivity extends AppCompatActivity {
-//    static final int REQUEST_IMAGE_CAPTURE = 1;
     static final int REQUEST_TAKE_PHOTO = 1;
     String currentPhotoPath;
 
@@ -50,12 +49,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-//    private void dispatchTakePictureIntent() {
-//        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-//        if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-//            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
-//        }
-//    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
