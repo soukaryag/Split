@@ -226,6 +226,9 @@ public class MainActivity extends AppCompatActivity {
         blacklist.add("shless");
         blacklist.add("chang");
         blacklist.add("subtota");
+        blacklist.add("visa");
+        blacklist.add("#");
+        blacklist.add("mastercard");
 
         int offset = 100;
 
