@@ -43,23 +43,36 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_results);
 
         String filepath = getIntent().getStringExtra("Path");
-
-        Bitmap testImage = getBitmapFromAsset(this, "test2.png");
-
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(testImage);
-
-        recognizeText(image);
-
-
         File file = new File(filepath);
+        Bitmap testImage = BitmapFactory.decodeFile(file.getAbsolutePath());
+
         if (file.exists()) {
             System.out.println("File does exist");
             ImageView imageView = findViewById(R.id.image_view);
             imageView.setImageURI(Uri.fromFile(file));
+
+            try {
+                ExifInterface exif = new ExifInterface(filepath);
+                int orientation = exif.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
+                System.out.println("Orientation: " + orientation);
+
+                Matrix matrix = new Matrix();
+                matrix.postRotate(90);
+                Bitmap rotatedBitmap = Bitmap.createBitmap(testImage, 0, 0, testImage.getWidth(), testImage.getHeight(), matrix, true);
+                testImage = rotatedBitmap;
+            } catch(IOException err) {
+                System.out.println(err);
+            }
+
         }
         else {
             System.out.println("File does not exist");
         }
+
+        Bitmap test_image = getBitmapFromAsset(this,"target.jpg");
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(test_image);
+
+        recognizeText(image);
 
 //        TextRecognizer txtRecog = new TextRecognizer.Builder(getApplicationContext()).build();
 //
@@ -101,7 +114,7 @@ public class ResultsActivity extends AppCompatActivity {
                                 // Task completed successfully
                                 // [START_EXCLUDE]
                                 // [START get_text]
-                                processTextRecognitionResult(firebaseVisionText);
+                                processTextBlock(firebaseVisionText);
                                 // [END get_text]
                                 // [END_EXCLUDE]
                             }
@@ -123,12 +136,14 @@ public class ResultsActivity extends AppCompatActivity {
         String resultText = result.getText();
 
         for (FirebaseVisionText.TextBlock block: result.getTextBlocks()) {
+            System.out.println("#################");
             String blockText = block.getText();
             Float blockConfidence = block.getConfidence();
             List<RecognizedLanguage> blockLanguages = block.getRecognizedLanguages();
             Point[] blockCornerPoints = block.getCornerPoints();
             Rect blockFrame = block.getBoundingBox();
             for (FirebaseVisionText.Line line: block.getLines()) {
+                System.out.println("-------------------");
                 String lineText = line.getText();
                 Float lineConfidence = line.getConfidence();
                 List<RecognizedLanguage> lineLanguages = line.getRecognizedLanguages();
@@ -136,13 +151,16 @@ public class ResultsActivity extends AppCompatActivity {
                 Rect lineFrame = line.getBoundingBox();
                 for (FirebaseVisionText.Element element: line.getElements()) {
                     String elementText = element.getText();
-                    System.out.println("Text: " + elementText);
+                    System.out.println("Element: " + elementText);
                     Float elementConfidence = element.getConfidence();
                     List<RecognizedLanguage> elementLanguages = element.getRecognizedLanguages();
                     Point[] elementCornerPoints = element.getCornerPoints();
+                    System.out.println("First Point: " + elementCornerPoints[0].toString());
                     Rect elementFrame = element.getBoundingBox();
                 }
+                System.out.println("-------------------");
             }
+            System.out.println("#################");
         }
         // [END mlkit_process_text_block]
     }
@@ -155,14 +173,19 @@ public class ResultsActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < blocks.size(); i++) {
+            System.out.println("#################");
             List<FirebaseVisionText.Line> lines = blocks.get(i).getLines();
             for (int j = 0; j < lines.size(); j++) {
+
                 List<FirebaseVisionText.Element> elements = lines.get(j).getElements();
                 for (int k = 0; k < elements.size(); k++) {
 
-                    System.out.println("Element: " + elements.get(k).getText());
+                    System.out.print(elements.get(k).getText() + " , ");
                 }
+
+                System.out.println("");
             }
+            System.out.println("#################");
         }
     }
 
