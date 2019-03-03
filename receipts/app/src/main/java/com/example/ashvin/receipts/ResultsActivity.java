@@ -52,6 +52,9 @@ public class ResultsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
+        getSupportActionBar().hide(); // hide the title bart a
+
 
         //HardCoded Stuff
         TextView name = (TextView) findViewById(R.id.person_id);
@@ -80,12 +83,14 @@ public class ResultsActivity extends AppCompatActivity {
         });
 
         TextView groupName = (TextView) findViewById(R.id.group_name);
-        groupName.setText("Group 1:");
+        groupName.setText("Hoo Hacks Squad");
 
         TextView color1 = (TextView) findViewById(R.id.color1);
+        color1.setBackground(updateButtonBorder3());
         color1.setText("Green:");
 
         TextView color2 = (TextView) findViewById(R.id.color2);
+        color2.setBackground(updateButtonBorder4());
         color2.setText("Blue");
 
         TextView member1 = (TextView) findViewById(R.id.member1);
@@ -93,9 +98,6 @@ public class ResultsActivity extends AppCompatActivity {
 
         TextView member2 = (TextView) findViewById(R.id.member2);
         member2.setText("Edwin Y.");
-
-        requestWindowFeature(Window.FEATURE_NO_TITLE); //will hide the title
-        getSupportActionBar().hide(); // hide the title bart a
 
         String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);
@@ -261,6 +263,22 @@ public class ResultsActivity extends AppCompatActivity {
         ShapeDrawable sd = new ShapeDrawable();
         sd.setShape(new RectShape());
         sd.getPaint().setColor(colors[item2Clicks % 3]);
+        sd.getPaint().setStrokeWidth(10f);
+        sd.getPaint().setStyle(Style.STROKE);
+        return sd;
+    }
+    public ShapeDrawable updateButtonBorder3() {
+        ShapeDrawable sd = new ShapeDrawable();
+        sd.setShape(new RectShape());
+        sd.getPaint().setColor(colors[1]);
+        sd.getPaint().setStrokeWidth(10f);
+        sd.getPaint().setStyle(Style.STROKE);
+        return sd;
+    }
+    public ShapeDrawable updateButtonBorder4() {
+        ShapeDrawable sd = new ShapeDrawable();
+        sd.setShape(new RectShape());
+        sd.getPaint().setColor(colors[2]);
         sd.getPaint().setStrokeWidth(10f);
         sd.getPaint().setStyle(Style.STROKE);
         return sd;
