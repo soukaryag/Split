@@ -1,5 +1,6 @@
 package com.example.ashvin.receipts;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -14,6 +15,7 @@ import android.net.Uri;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 import android.graphics.Paint.Style;
 
@@ -52,6 +54,8 @@ public class ResultsActivity extends AppCompatActivity {
     private int item2Clicks = 0;
     private int[] colors = {Color.WHITE, Color.GREEN, Color.BLUE};
     private HashMap<String, Double> priceMap;
+    Button button2;
+    Button button3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,24 @@ public class ResultsActivity extends AppCompatActivity {
         String filepath = getIntent().getStringExtra("Path");
         File file = new File(filepath);
         Bitmap testImage = BitmapFactory.decodeFile(file.getAbsolutePath());
+
+        button2 = (Button)findViewById(R.id.button_request);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button3 = (Button)findViewById(R.id.button_retake);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         if (file.exists()) {
             System.out.println("File does exist");
@@ -135,11 +157,6 @@ public class ResultsActivity extends AppCompatActivity {
         TextView groupName = (TextView) findViewById(R.id.group_name);
         groupName.setText("HooHacks Squad:");
 
-        TextView color1 = (TextView) findViewById(R.id.color1);
-        color1.setText("Green:");
-
-        TextView color2 = (TextView) findViewById(R.id.color2);
-        color2.setText("Blue");
 
         TextView member1 = (TextView) findViewById(R.id.member1);
         member1.setText("Ashvin V.");
