@@ -1,7 +1,7 @@
 # Split: *The new way to split the bill*
 
 ## Inspiration
-
+The inspiration for this project comes from countless times struggling and arguing over how to split the bill efficiently. It is often hard to split a bill fairly among a group of people and can lead to unnecessary dissonance; this is where Split aims to step in and save the day!
 
 ## What it does
 Split allows a group to divide up the costs of a bill with ease. By using an Optical Character Recognition and the simple  camera of your phone, Split can recognize its contents and make sense of the context of the transactions. The user can simply add the group of interest to the transactions and be on the way to splitting the bill fairly on an item-by-item basis.
