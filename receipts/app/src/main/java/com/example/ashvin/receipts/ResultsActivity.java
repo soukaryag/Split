@@ -73,6 +73,7 @@ public class ResultsActivity extends AppCompatActivity {
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
                 startActivity(intent);
             }
@@ -87,6 +88,7 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
+        
         if (file.exists()) {
             System.out.println("File does exist");
 //            ImageView imageView = findViewById(R.id.image_view);
@@ -133,7 +135,7 @@ public class ResultsActivity extends AppCompatActivity {
         name.setText("Soukarya");
 
         final Button item1 = (Button) findViewById(R.id.item1);
-        item1.setText("McDonalds                $1.00");
+        item1.setText("McChicken                $1.00");
         item1.setBackground(updateButtonBorder1());
         item1.setOnClickListener(new View.OnClickListener() {
             @Override
