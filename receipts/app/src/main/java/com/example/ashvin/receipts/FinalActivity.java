@@ -40,18 +40,21 @@ public class FinalActivity extends Activity {
     }
     private void randomSet(PieView pieView){
         ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
-        ArrayList<Integer> intList = new ArrayList<Integer>();
-        int totalNum = (int) (5*Math.random()) + 5;
+//        ArrayList<Integer> intList = new ArrayList<Integer>();
+//        int totalNum = (int) (5*Math.random()) + 5;
+//
+//        int totalInt = 0;
+//        for(int i=0; i<totalNum; i++){
+//            int ranInt = (int)(Math.random()*10)+1;
+//            intList.add(ranInt);
+//            totalInt += ranInt;
+//        }
+//        for(int i=0; i<totalNum; i++){
+//            pieHelperArrayList.add(new PieHelper(100f*intList.get(i)/totalInt));
+//        }
 
-        int totalInt = 0;
-        for(int i=0; i<totalNum; i++){
-            int ranInt = (int)(Math.random()*10)+1;
-            intList.add(ranInt);
-            totalInt += ranInt;
-        }
-        for(int i=0; i<totalNum; i++){
-            pieHelperArrayList.add(new PieHelper(100f*intList.get(i)/totalInt));
-        }
+        pieHelperArrayList.add(new PieHelper(1/3));
+        pieHelperArrayList.add(new PieHelper(2/3));
 
         pieView.selectedPie(PieView.NO_SELECTED_INDEX);
         pieView.showPercentLabel(true);
@@ -60,11 +63,8 @@ public class FinalActivity extends Activity {
 
     private void set(PieView pieView){
         ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
-        pieHelperArrayList.add(new PieHelper(20, Color.BLACK));
-        pieHelperArrayList.add(new PieHelper(6));
-        pieHelperArrayList.add(new PieHelper(30));
-        pieHelperArrayList.add(new PieHelper(12));
-        pieHelperArrayList.add(new PieHelper(32));
+        pieHelperArrayList.add(new PieHelper(66, Color.rgb(46, 134, 222)));
+        pieHelperArrayList.add(new PieHelper(34, Color.rgb(16, 172, 132)));
 
         pieView.setDate(pieHelperArrayList);
         pieView.setOnPieClickListener(new PieView.OnPieClickListener() {

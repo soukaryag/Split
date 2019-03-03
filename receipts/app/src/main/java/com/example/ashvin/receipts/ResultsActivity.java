@@ -61,7 +61,7 @@ public class ResultsActivity extends AppCompatActivity {
         name.setText("Soukarya");
 
         final Button item1 = (Button) findViewById(R.id.item1);
-        item1.setText("McDonalds                $1.00");
+        item1.setText("McChicken                $1.00");
         item1.setBackground(updateButtonBorder1());
         item1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,14 +82,23 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
+        final Button req = (Button) findViewById(R.id.button_request);
+        req.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+            Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
+            startActivity(intent);
+            }
+        });
+
         TextView groupName = (TextView) findViewById(R.id.group_name);
         groupName.setText("HooHacks Squad:");
 
-        TextView color1 = (TextView) findViewById(R.id.color1);
-        color1.setText("Green:");
-
-        TextView color2 = (TextView) findViewById(R.id.color2);
-        color2.setText("Blue");
+//        TextView color1 = (TextView) findViewById(R.id.color1);
+//        color1.setText("Green:");
+//
+//        TextView color2 = (TextView) findViewById(R.id.color2);
+//        color2.setText("Blue");
 
         TextView member1 = (TextView) findViewById(R.id.member1);
         member1.setText("Ashvin V.");
