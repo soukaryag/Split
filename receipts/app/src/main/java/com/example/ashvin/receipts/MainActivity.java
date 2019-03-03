@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                d();
+                dispatchTakePictureIntent();
             }
         });
 //        button.setOnClickListener(new View.OnClickListener() {
@@ -64,12 +64,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
 //    }
 
-
-    private void d(){
-        Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
-        startActivity(intent);
-    }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
