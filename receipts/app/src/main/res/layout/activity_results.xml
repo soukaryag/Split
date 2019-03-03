@@ -31,24 +31,25 @@
             android:textStyle="bold" />
 
         <LinearLayout
+            android:id="@+id/linLayout"
             android:layout_width="match_parent"
             android:layout_height="350dp"
             android:orientation="vertical">
 
 
-            <Button
-                android:id="@+id/item2"
-                android:layout_marginTop="85dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"/>
+            <!--<Button-->
+                <!--android:id="@+id/item2"-->
+                <!--android:layout_marginTop="85dp"-->
+                <!--android:layout_width="300dp"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_height="wrap_content"/>-->
 
-            <Button
-                android:id="@+id/item1"
-                android:layout_marginTop="55dp"
-                android:layout_width="300dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content" />
+            <!--<Button-->
+                <!--android:id="@+id/item1"-->
+                <!--android:layout_marginTop="55dp"-->
+                <!--android:layout_width="300dp"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_height="wrap_content" />-->
 
 
 
