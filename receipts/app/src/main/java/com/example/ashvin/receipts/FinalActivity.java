@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import java.text.DecimalFormat;
 
 
 public class FinalActivity extends Activity {
@@ -16,10 +17,50 @@ public class FinalActivity extends Activity {
     PieView pieView;
     Button button;
     Button button2;
+    String paid;
+    String total;
+    String owed;
+
+    String payer1str;
+    String payer2str;
+
+    String p1amount;
+    String p2amount;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_final);
+
+        DecimalFormat df = new DecimalFormat("0.00");
+
+        this.total = "3.28";   //need this value
+
+        this.p1amount = "2.00";  //need this value
+        this.p2amount = "1.00";  //need this value
+
+        this.owed = String.valueOf(df.format(Float.parseFloat(p1amount) + Float.parseFloat(p2amount)));
+
+        this.paid = String.valueOf(df.format(Float.parseFloat(total) - Float.parseFloat(owed)));
+
+        TextView paidField = (TextView) findViewById(R.id.paidAmount);
+        paidField.setText("$" + paid);
+
+        TextView totalField = (TextView) findViewById(R.id.totalAmount);
+        totalField.setText("$" + total);
+
+        TextView owedField = (TextView) findViewById(R.id.owedAmount);
+        owedField.setText("$" + owed);
+
+        TextView p1Field = (TextView) findViewById(R.id.payerOne);
+        p1Field.setText("Requested from Ashvin V. $" + p1amount);
+
+        TextView p2Field = (TextView) findViewById(R.id.payerTwo);
+        p2Field.setText("Requested from Edwin Y. $" + p2amount);
+
+
+
+
         textView = (TextView)findViewById(R.id.textView);
         pieView = (PieView)findViewById(R.id.pie_view);
         button = (Button)findViewById(R.id.pie_button);
@@ -53,8 +94,8 @@ public class FinalActivity extends Activity {
 //            pieHelperArrayList.add(new PieHelper(100f*intList.get(i)/totalInt));
 //        }
 
-        pieHelperArrayList.add(new PieHelper(1/3));
-        pieHelperArrayList.add(new PieHelper(2/3));
+        pieHelperArrayList.add(new PieHelper(34, "Ashvin"));
+        pieHelperArrayList.add(new PieHelper(66, "Edwin"));
 
         pieView.selectedPie(PieView.NO_SELECTED_INDEX);
         pieView.showPercentLabel(true);
@@ -63,8 +104,8 @@ public class FinalActivity extends Activity {
 
     private void set(PieView pieView){
         ArrayList<PieHelper> pieHelperArrayList = new ArrayList<PieHelper>();
-        pieHelperArrayList.add(new PieHelper(66, Color.rgb(46, 134, 222)));
-        pieHelperArrayList.add(new PieHelper(34, Color.rgb(16, 172, 132)));
+        pieHelperArrayList.add(new PieHelper(66, Color.rgb(46, 134, 222), "Edwin"));
+        pieHelperArrayList.add(new PieHelper(34, Color.rgb(16, 172, 132), "Ashvin"));
 
         pieView.setDate(pieHelperArrayList);
         pieView.setOnPieClickListener(new PieView.OnPieClickListener() {
@@ -77,7 +118,7 @@ public class FinalActivity extends Activity {
                 }
             }
         });
-        pieView.selectedPie(2);
+        pieView.selectedPie(0);
     }
 
     private void d(){

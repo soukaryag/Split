@@ -1,5 +1,6 @@
 package com.example.ashvin.receipts;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -14,6 +15,7 @@ import android.net.Uri;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.widget.Button;
 import android.support.v7.app.AppCompatActivity;
 import android.graphics.Paint.Style;
 
@@ -60,6 +62,9 @@ public class ResultsActivity extends AppCompatActivity {
     private int[] colors = {Color.WHITE, Color.GREEN, Color.BLUE};
 
     private ArrayList<Integer> buttonClicks = new ArrayList<>();
+    private HashMap<String, Double> priceMap;
+    Button button2;
+    Button button3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +74,24 @@ public class ResultsActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_results);
 
-//        HashMap<String, Double> priceMap = new HashMap<String,Double>(ReceiptApplication.applicationState.priceMap);
+        button2 = (Button)findViewById(R.id.button_request);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), FinalActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        button3 = (Button)findViewById(R.id.button_retake);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         HashMap<String,Double> priceMap = (HashMap<String, Double>)getIntent().getSerializableExtra("PriceMap");
         for(String key: priceMap.keySet()){
@@ -121,28 +143,6 @@ public class ResultsActivity extends AppCompatActivity {
 
             currId += 1;
         }
-
-//        final Button item1 = (Button) findViewById(R.id.item1);
-//        item1.setText("McDonalds                $1.00");
-//        item1.setBackground(updateButtonBorder1());
-//        item1.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                item1Clicks += 1;
-//                item1.setBackground(updateButtonBorder1());
-//            }
-//        });
-//
-//        final Button item2 = (Button) findViewById(R.id.item2);
-//        item2.setText("S Caramel Mocha          $2.00");
-//        item2.setBackground(updateButtonBorder2());
-//        item2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                item2Clicks += 1;
-//                item2.setBackground(updateButtonBorder2());
-//            }
-//        });
 
         TextView groupName = (TextView) findViewById(R.id.group_name);
         groupName.setText("HooHacks Squad:");
